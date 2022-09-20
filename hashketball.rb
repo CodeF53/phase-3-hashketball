@@ -126,4 +126,51 @@ def game_hash
   }
 end
 
+
 # Write code here
+$players = game_hash.map {|key,value| value[:players] }.flatten
+
+def get_player player_name
+  $players.select { |player| player[:player_name] == player_name }[0]
+end
+# pp get_player("Alan Anderson")
+
+# hashketball #num_points_scored knows the number of points scored by each player
+def num_points_scored player_name
+  get_player(player_name)[:points]
+end
+# pp num_points_scored "Alan Anderson"
+
+# hashketball #shoe_size knows the shoe size of each player
+def shoe_size player_name
+  get_player(player_name)[:shoe]
+end
+
+# hashketball #team_colors knows the Brooklyn Nets colors are Black and White
+# hashketball #team_colors knows the Charlotte Hornets colors are Turquoise and Purple
+def team_colors team_name
+  game_hash.select { |key, value| value[:team_name] == team_name}.flatten[1][:colors]
+end
+
+# hashketball #team_names returns the team names
+def team_names
+  game_hash.map {|key, value| value[:team_name]}
+end
+
+# hashketball #player_numbers returns the player jersey numbers
+def player_numbers team_name
+  game_hash.select { |key, value| value[:team_name] == team_name }.flatten[1][:players].map {|player| player[:number]}
+end
+# def player_numbers
+#   $players.map {|player| player[:number]}
+# end
+
+# hashketball #player_stats returns all stats for a given player
+def player_stats player_name
+  get_player(player_name)
+end
+
+# hashketball #big_shoe_rebounds returns the number of rebounds of the player with the biggest shoe size
+def big_shoe_rebounds
+  pp $players.sort! {|a,b| a[:shoe] <=> b[:shoe]}.last[:rebounds]
+end
