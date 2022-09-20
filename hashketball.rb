@@ -172,5 +172,5 @@ end
 
 # hashketball #big_shoe_rebounds returns the number of rebounds of the player with the biggest shoe size
 def big_shoe_rebounds
-  pp $players.sort! {|a,b| a[:shoe] <=> b[:shoe]}.last[:rebounds]
+  $players.sort! {|a,b| a[:shoe] <=> b[:shoe]}.last[:rebounds]
 end
